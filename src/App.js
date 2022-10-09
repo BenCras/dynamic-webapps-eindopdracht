@@ -1,9 +1,10 @@
 import './App.css';
-import {GAMES} from "./data/Data";
+import {GAMES, GIFT_CARDS} from "./data/Data";
 import {Tabs, TabList, Tab, TabPanel} from "react-tabs";
 import 'react-tabs/style/react-tabs.css';
 import {GamesPage} from "./pages/GamesPage";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {GiftCardsPage} from "./pages/GiftCardsPage";
 
 function App() {
   return (
@@ -13,6 +14,9 @@ function App() {
         </TabList>
         <TabPanel>
           <GamesPage games={GAMES}/>
+        </TabPanel>
+        <TabPanel>
+          <GiftCardsPage giftCards={GIFT_CARDS}/>
         </TabPanel>
       </Tabs>
   );
