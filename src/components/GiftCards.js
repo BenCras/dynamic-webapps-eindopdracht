@@ -7,7 +7,7 @@ export function GiftCards(props) {
     const {giftCards} = props;
     return (
         <Container>
-            {giftCards.map((g, i) => <GiftCard key={i} game={g} />)}
+            {giftCards.map((g, i) => <GiftCard key={i} giftCard={g} />)}
         </Container>
     );
 }
