@@ -1,16 +1,18 @@
 import './App.css';
-import {} from "./data/Data";
+import {GAMES} from "./data/Data";
 import {Tabs, TabList, Tab, TabPanel} from "react-tabs";
 import 'react-tabs/style/react-tabs.css';
+import {GamesPage} from "./pages/GamesPage";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
       <Tabs>
         <TabList>
-          <Tab>start</Tab>
+          <Tab>games</Tab>
         </TabList>
         <TabPanel>
-          <h1>hello world</h1>
+          <GamesPage games={GAMES}/>
         </TabPanel>
       </Tabs>
   );
