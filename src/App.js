@@ -1,5 +1,11 @@
 import './App.css';
 import {GAMES, GIFT_CARDS} from "./data/Data";
+
+// import {collection} from 'firebase/firestore';
+// import {useCollectionData} from 'react-firebase-hooks/firestore';
+// import {firestoreDB} from "../services/firebase";
+
+
 import {Tabs, TabList, Tab, TabPanel} from "react-tabs";
 import 'react-tabs/style/react-tabs.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
