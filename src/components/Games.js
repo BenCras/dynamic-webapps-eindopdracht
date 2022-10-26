@@ -6,14 +6,12 @@ import {Container, Row} from "react-bootstrap";
 export function Games(props) {
     const {games} = props;
     return (
-        <Container>
-            {games.map((g, i) => <Game key={i} game={g} />)}
-        </Container>
+        games!==undefined ? <Container>{games.map((g) => <Game key={g.id} game={g} />)}</Container> : null
     );
 }
 
 Games.propTypes = {
-    games: PropTypes.array.isRequired,
+    games: PropTypes.array,
 }
 
 function Game(props) {
