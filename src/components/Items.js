@@ -41,7 +41,7 @@ function Item(props) {
             <MyCard title={item.name} onClick={() => <ItemPage item={item}/>}>
                 € {item.price}
                 <Button onClick={() => addToCart(item.name)}>Add to Cart</Button>
-                {(onDeleteItem || onEditItem) &&
+                {(onDeleteItem) &&
                 <div className="border-top mt-1 pt-1">
                     <OptionButton onClick={() => onDeleteItem(item)}><MdDelete/></OptionButton>
                 </div>
