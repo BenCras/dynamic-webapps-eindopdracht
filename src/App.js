@@ -3,15 +3,14 @@ import './services/firebase'
 import 'react-tabs/style/react-tabs.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {ItemsPage} from "./pages/itemsPage";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {HashRouter, Route, Routes} from "react-router-dom";
 import Layout from "./components/Layout";
 import {HomePage} from "./pages/HomePage";
-import {ItemPage} from "./pages/ItemPage";
 import {AdminPage} from "./pages/AdminPage";
 
 function App() {
     return (
-        <BrowserRouter>
+        <HashRouter>
             <Routes>
                 <Route element={<Layout />}>
                     <Route path="/" element={<HomePage/>} />
@@ -21,7 +20,7 @@ function App() {
                     <Route path="admin" element={<AdminPage />} />
                 </Route>
             </Routes>
-        </BrowserRouter>
+        </HashRouter>
 
     );
 }
