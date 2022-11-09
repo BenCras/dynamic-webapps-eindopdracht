@@ -3,14 +3,14 @@ import {MyCard} from "./MyCard";
 import {Container, Row} from "react-bootstrap";
 
 
-export function Games(props) {
+export function Items(props) {
     const {games} = props;
     return (
         games!==undefined ? <Container>{games.map((g) => <Game key={g.id} game={g} />)}</Container> : null
     );
 }
 
-Games.propTypes = {
+Items.propTypes = {
     games: PropTypes.array,
 }
 
@@ -31,6 +31,7 @@ Game.propTypes = {
         name: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
         code: PropTypes.string.isRequired,
+        type: PropTypes.string.isRequired,
         clicked: PropTypes.bool,
     })
 }
