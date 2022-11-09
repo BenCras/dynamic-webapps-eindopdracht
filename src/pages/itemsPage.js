@@ -75,7 +75,7 @@ export function ItemsPage(props) {
     );
 }
 
-const converter = { //todo lookup purpose
+const converter = {
     toFirestore: undefined,
     fromFirestore: function (snapshot, options) {
         const data = snapshot.data(options);
