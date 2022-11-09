@@ -14,16 +14,8 @@ function OptionButton(props) {
     );
 }
 
-// export function Items(props) {
-//     const {items} = props;
-//     return (
-//         <Row>
-//             {items !== undefined ? items.map((i) => <Item key={i.id} item={i}/>) : null}
-//         </Row>
-//     );
-// }
 export function Items(props) {
-    const {items, onDeleteItem, onEditItem} = props;
+    const {items, onDeleteItem, onEditItem, addToCart} = props;
     return (
         <Row>
             {items?.map(i =>
@@ -31,6 +23,8 @@ export function Items(props) {
                         item={i}
                         onDeleteItem={onDeleteItem}
                         onEditItem={onEditItem}
+                        addToCart={addToCart}
+
                 />)}
         </Row>
     );
@@ -40,26 +34,16 @@ Items.propTypes = {
     games: PropTypes.array,
 }
 
-// function Item(props) {
-//     const {item} = props;
-//     return (
-//         <Col lg={3}>
-//             <MyCard title={item.name} onClick={() => <ItemPage item={item}/>}>
-//                 {item.price}
-//             </MyCard>
-//         </Col>
-//     )
-// }
 function Item(props) {
-    const {item, onDeleteItem, onEditItem} = props;
+    const {item, onDeleteItem, addToCart} = props;
     return (
         <Col lg={3}>
             <MyCard title={item.name} onClick={() => <ItemPage item={item}/>}>
-                {item.price}
+                € {item.price}
+                <Button onClick={() => addToCart(item.name)}>Add to Cart</Button>
                 {(onDeleteItem || onEditItem) &&
                 <div className="border-top mt-1 pt-1">
                     <OptionButton onClick={() => onDeleteItem(item)}><MdDelete/></OptionButton>
-                    <OptionButton onClick={() => onEditItem(item)}><MdEdit/></OptionButton>
                 </div>
                 }
             </MyCard>

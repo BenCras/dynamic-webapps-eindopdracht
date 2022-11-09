@@ -1,5 +1,5 @@
 import {Items} from "../components/Items";
-import {addDoc, collection, deleteDoc, orderBy, query, updateDoc} from 'firebase/firestore';
+import {addDoc, collection, deleteDoc, orderBy, query} from 'firebase/firestore';
 import {useCollectionData} from 'react-firebase-hooks/firestore';
 import {firestoreDB} from "../services/firebase";
 import {Container, Form, Row, Col, Button, Modal} from "react-bootstrap";
@@ -140,7 +140,6 @@ export function AdminPage(props) {
                                 g.name.toLowerCase().includes(search.toLowerCase()))}
                                    isInitiallyOpen={true}
                                    onDeleteItem={editMode && deleteItem}
-                                   // onEditItem={editMode && editItem}
                             />
                         </Row>
                     </Col>

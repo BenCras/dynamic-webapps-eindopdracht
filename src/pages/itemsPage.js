@@ -4,6 +4,7 @@ import {useCollectionData} from 'react-firebase-hooks/firestore';
 import {firestoreDB} from "../services/firebase";
 import {Container, Form, Row, Col} from "react-bootstrap";
 import {useState} from "react";
+import {ShoppingCart} from "../components/ShoppingCart";
 
 
 export function ItemsPage(props) {
@@ -11,6 +12,8 @@ export function ItemsPage(props) {
     const [values, loading, error] = useCollectionData(query);
     const [search, setSearch] = useState("");
     const [platform, setPlatform] = useState("");
+    const [shoppingCart, setShoppingCart] = useState([]);
+
     const {type} = props;
     console.log({values, loading, error});
     return (
@@ -28,6 +31,7 @@ export function ItemsPage(props) {
                 </Row>
                 <Row>
                     <Col lg={2}>
+                        <Row>
                         <Form>
                             <Form.Check style={{display: "block"}}
                                 inline checked={platform === "Steam"}
@@ -47,12 +51,17 @@ export function ItemsPage(props) {
                             />
                             <br/>
                         </Form>
+                        </Row>
+                        <Row>
+                            <ShoppingCart items={shoppingCart}/>
+                        </Row>
                     </Col>
                     <Col>
                         <Row>
                             <Items items={values?.filter(g =>
                                 (type !== "all" ? g.type === type : true) &&
                                 g.name.toLowerCase().includes(search.toLowerCase()))}
+                                   addToCart={a => setShoppingCart([...shoppingCart, a])}
                             />
                         </Row>
                     </Col>
