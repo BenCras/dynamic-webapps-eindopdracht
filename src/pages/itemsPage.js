@@ -6,13 +6,30 @@ import {Container, Form, Row, Col} from "react-bootstrap";
 import {useState} from "react";
 import {ShoppingCart} from "../components/ShoppingCart";
 
+const initialList = [
+    {id: 1, title: "Steam", seen: false},
+    {id: 2, title: "Origin", seen: false},
+];
 
 export function ItemsPage(props) {
     const query = collection(firestoreDB, 'items').withConverter(converter);
     const [values, loading, error] = useCollectionData(query);
     const [search, setSearch] = useState("");
-    const [platform, setPlatform] = useState("");
+    const [platforms, setPlatforms] = useState(initialList);
     const [shoppingCart, setShoppingCart] = useState([]);
+
+    function PrintPlatforms({platforms}) {
+        return (platforms.map(p => (
+            <Form.Check style={{display: "block"}}
+                        checked={p.seen}
+                        label={p.title}
+                        name="type"
+                        type="checkbox"
+                        id="game"
+                        onChange={() => setPlatforms(platforms.map(s => s.id === p.id ? {...s, seen: !p.seen} : s))}
+            />
+        )));
+    }
 
     const {type} = props;
     console.log({values, loading, error});
@@ -33,23 +50,9 @@ export function ItemsPage(props) {
                     <Col lg={2}>
                         <Row>
                         <Form>
-                            <Form.Check style={{display: "block"}}
-                                inline checked={platform === "Steam"}
-                                label="Steam"
-                                name="type"
-                                type="checkbox"
-                                id="Steam"
-                                onChange={() => setPlatform("Steam")}
+                            <PrintPlatforms
+                                platforms={platforms}
                             />
-                            <Form.Check style={{display: "block"}}
-                                inline checked={platform === "Origin"}
-                                label="Origin"
-                                name="type"
-                                type="checkbox"
-                                id="Origin"
-                                onChange={() => setPlatform("Origin")}
-                            />
-                            <br/>
                         </Form>
                         </Row>
                         <Row>
@@ -60,6 +63,7 @@ export function ItemsPage(props) {
                         <Row>
                             <Items items={values?.filter(g =>
                                 (type !== "all" ? g.type === type : true) &&
+                                (platforms.filter(p => p.seen).length !== 0 ? platforms.filter(p => p.seen).map(p => p.title).includes(g.platform) : true) &&
                                 g.name.toLowerCase().includes(search.toLowerCase()))}
                                    addToCart={a => setShoppingCart([...shoppingCart, a])}
                             />
