@@ -25,7 +25,7 @@ export function AdminPage(props) {
     const [open, setOpen] = useState(false);
     const handleClose = () => setOpen(false);
     const handleShow = () => setOpen(true);
-    const [newItem, setNewItem] = useState();
+    const [newItem, setNewItem] = useState({});
     const [editMode, setEditMode] = useState(false);
 
     // CreateTypes();
@@ -59,6 +59,7 @@ export function AdminPage(props) {
             console.log("ERROR add item NOT done")
         }
         handleClose()
+        setNewItem();
     }
 
     async function deleteItem(item) {
@@ -96,7 +97,6 @@ export function AdminPage(props) {
                                     <Form.Label className="mt-2 ms-1">name:</Form.Label>
                                     <Form.Control
                                         onChange={e => setNewItem({...newItem, name: e.target.value})}/>
-                                    {console.log(newItem)}
                                     <Form.Label className="mt-2 ms-1">price:</Form.Label>
                                     <Form.Control
                                         onChange={e => setNewItem({...newItem, price: Number(e.target.value)})}/>
@@ -117,7 +117,6 @@ export function AdminPage(props) {
                                 <div className="d-flex justify-content-center p-2">
                                     <Button className="m-1" size="lg" onClick={() => handleClose()}>cancel</Button>
                                     <Button className="m-1" size="lg" onClick={async () => {
-                                        //interessant voorbeeld await
                                         if (await addItem(newItem)) handleClose();
                                     }}>save</Button>
                                 </div>
