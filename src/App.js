@@ -6,6 +6,8 @@ import {ItemsPage} from "./pages/itemsPage";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Layout from "./components/Layout";
 import {HomePage} from "./pages/HomePage";
+import {ItemPage} from "./pages/ItemPage";
+import {AdminPage} from "./pages/AdminPage";
 
 function App() {
     return (
@@ -16,6 +18,7 @@ function App() {
                     <Route path="games" element={<ItemsPage type={"game"}/>} />
                     <Route path="software" element={<ItemsPage type={"software"}/>} />
                     <Route path="giftcards" element={<ItemsPage type={"giftcard"}/>} />
+                    <Route path="admin" element={<AdminPage />} />
                 </Route>
             </Routes>
         </BrowserRouter>
