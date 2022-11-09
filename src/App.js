@@ -1,32 +1,25 @@
 import './App.css';
 import './services/firebase'
-import {Tabs, TabList, Tab, TabPanel} from "react-tabs";
 import 'react-tabs/style/react-tabs.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {ItemsPage} from "./pages/itemsPage";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Layout from "./components/Layout";
+import {HomePage} from "./pages/HomePage";
 
 function App() {
     return (
-        <Tabs>
-            <TabList>
-                <Tab>home</Tab>
-                <Tab>games</Tab>
-                <Tab>software</Tab>
-                <Tab>gift cards</Tab>
-            </TabList>
-            <TabPanel>
+        <BrowserRouter>
+            <Routes>
+                <Route element={<Layout />}>
+                    <Route path="/" element={<HomePage/>} />
+                    <Route path="games" element={<ItemsPage type={"game"}/>} />
+                    <Route path="software" element={<ItemsPage type={"software"}/>} />
+                    <Route path="giftcards" element={<ItemsPage type={"giftcard"}/>} />
+                </Route>
+            </Routes>
+        </BrowserRouter>
 
-            </TabPanel>
-            <TabPanel>
-                <ItemsPage type={"game"}/>
-            </TabPanel>
-            <TabPanel>
-                <ItemsPage type={"software"}/>
-            </TabPanel>
-            <TabPanel>
-                <ItemsPage type={"giftcard"}/>
-            </TabPanel>
-        </Tabs>
     );
 }
 

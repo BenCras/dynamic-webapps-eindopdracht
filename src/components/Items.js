@@ -1,12 +1,14 @@
 import PropTypes from "prop-types";
 import {MyCard} from "./MyCard";
-import {Container, Row} from "react-bootstrap";
+import {Row, Col} from "react-bootstrap"
 
 
 export function Items(props) {
-    const {games} = props;
+    const {items} = props;
     return (
-        games!==undefined ? <Container>{games.map((g) => <Game key={g.id} game={g} />)}</Container> : null
+        <Row>
+            {items !== undefined ? items.map((i) => <Item key={i.id} item={i}/>) : null}
+        </Row>
     );
 }
 
@@ -14,19 +16,18 @@ Items.propTypes = {
     games: PropTypes.array,
 }
 
-function Game(props) {
-    const {game} = props;
+function Item(props) {
+    const {item} = props;
     return (
-        <Row xs={6} sm={4} md={3} lg={2} >
-            <MyCard title={game.name} >
-                <div>{game.price}</div>
-                <div style={{display: game.clicked ? "block" : "none"}}>{game.code}</div>
+        <Col lg={3}>
+            <MyCard title={item.name}>
+                {item.price}
             </MyCard>
-        </Row>
+        </Col>
     )
 }
 
-Game.propTypes = {
+Item.propTypes = {
     game: PropTypes.shape({
         name: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
