@@ -153,7 +153,6 @@ const converter = {
             name: dataInApp.name,
             price: Number(dataInApp.price),
             code: dataInApp.code,
-            // platform: dataInApp.platform,
             seller: dataInApp.seller,
             type: dataInApp.type,
         };
