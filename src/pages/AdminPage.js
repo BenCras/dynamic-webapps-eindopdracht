@@ -59,7 +59,7 @@ export function AdminPage(props) {
             console.log("ERROR add item NOT done")
         }
         handleClose()
-        setNewItem();
+        setNewItem({});
     }
 
     async function deleteItem(item) {
@@ -102,7 +102,6 @@ export function AdminPage(props) {
                                         onChange={e => setNewItem({...newItem, price: Number(e.target.value)})}/>
                                     <Form.Label className="mt-2 ms-1">code:</Form.Label>
                                     <Form.Control
-                                        value={"xxxx-xxxx-xxxx-xxxx"}
                                         onChange={e => setNewItem({...newItem, code: e.target.value})}/>
                                     <Form.Label className="mt-2 ms-1">platform:</Form.Label>
                                     <Form.Control
@@ -152,12 +151,11 @@ const converter = {
     toFirestore: function (dataInApp) {
         return {
             name: dataInApp.name,
-            price: Number(dataInApp.age),
-            code: dataInApp.city,
-            platform: dataInApp.city,
-            seller: dataInApp.city,
-            type: dataInApp.city,
-            clicked: dataInApp.city,
+            price: Number(dataInApp.price),
+            code: dataInApp.code,
+            platform: dataInApp.platform,
+            seller: dataInApp.seller,
+            type: dataInApp.type,
         };
     },
     fromFirestore: function (snapshot, options) {
